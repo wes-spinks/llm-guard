@@ -49,3 +49,15 @@ help: ## List all targets and help information.
 				printf "%s\n", $$2; \
 			} \
 		}'
+
+.PHONY: image
+image: ## podman build local image
+	@echo "Running `podman build -t kit-pg -f Containerfile`...\n"
+	@podman build -t kit-pg -f Containerfile
+
+.PHONY: running
+running: image
+	ifeq ($(podman images kit-pg --format=json | jq .[].Names[]))
+		@podman run -p 8443:8443 kit-pg
+	endif
+		
