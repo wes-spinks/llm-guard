@@ -27,9 +27,9 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-_app = Flask(__name__)
-_app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
-app = CORS(_app)
+app = Flask(__name__)
+app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
+CORS(app)
 
 
 @app.route("/health", methods=["GET"])
