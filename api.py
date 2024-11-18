@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from datetime import datetime
 from flask import Flask, Response, jsonify, make_response, request, render_template
+from flask_cors import CORS, cross_origin
 
 APP_HOST = os.environ.get("APP_HOST", "0.0.0.0")
 APP_PORT = os.environ.get("APP_PORT", "8443")
@@ -27,6 +28,7 @@ logging.basicConfig(
 )
 
 app = Flask(__name__)
+CORS(app)
 app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
 
 
@@ -41,6 +43,7 @@ def ready():
 
 
 @app.route("/input", methods=["POST"])
+@cross_origin(origin='*')
 def scan_input():
     """Endpoint to perform guardrails scan on user INPUT prompt
 

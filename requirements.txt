@@ -29,6 +29,7 @@ Faker==30.8.2
 fastjsonschema==2.20.0
 filelock==3.16.1
 Flask==3.0.3
+Flask-Cors==5.0.0
 fsspec==2024.10.0
 fuzzysearch==0.7.3
 ghp-import==2.1.0
@@ -54,6 +55,7 @@ jupyterlab_pygments==0.3.0
 jupytext==1.16.4
 langcodes==3.4.1
 language_data==1.2.0
+llm-guard @ file:///home/wspinks/workspace/guardrailroad/kit-pg
 marisa-trie==1.2.1
 Markdown==3.7
 markdown-it-py==3.0.0
