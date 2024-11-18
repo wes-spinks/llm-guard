@@ -28,7 +28,7 @@ logging.basicConfig(
 )
 
 _app = Flask(__name__)
-app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
+_app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
 app = CORS(_app)
 
 
