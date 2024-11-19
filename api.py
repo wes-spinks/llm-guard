@@ -32,6 +32,12 @@ app.logger.setLevel(os.environ.get("LOGGING_LEVEL", "INFO"))
 cors = CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "*", "expose_headers": "*"}})
 
 
+@app.before_request
+def basic_authentication():
+    if request.method.lower() == 'options':
+        return Response()
+
+
 @app.route("/health", methods=["GET"])
 def ready():
     """Simple health check to confirm app is responding
@@ -43,7 +49,6 @@ def ready():
 
 
 @app.route("/input", methods=["POST"])
-@cross_origin(origin='*')
 def scan_input():
     """Endpoint to perform guardrails scan on user INPUT prompt
 
